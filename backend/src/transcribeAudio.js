@@ -12,13 +12,14 @@ export const transcribeAudio = async (content) => {
   const encoding = "FLAC";
   const sampleRateHertz = 44100;
   const languageCode = "en-US";
-  const model = "default";
+  const model = "phone_call";
 
   const config = {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode,
     audioChannelCount: 2,
+    useEnhanced: true,
     model,
   };
 

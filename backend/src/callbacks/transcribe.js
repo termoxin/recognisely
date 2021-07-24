@@ -8,6 +8,7 @@ export const transcribeRoute = async (req, res, _next) => {
 
   ffmpeg(filedata.path)
     .toFormat("flac")
+    .outputOptions(["-ac 2", ["-ar 44100"]])
     .output(fs.createWriteStream(`/${filedata.originalname}`))
     .on("end", async () => {
       const transcript = await transcribeAudio(
