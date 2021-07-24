@@ -19,11 +19,11 @@ export const transcribeAudio = async (content) => {
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode,
     model: model,
-    speechContexts: [
-      {
-        phrases: ["meet up with Bean"],
-      },
-    ],
+    // speechContexts: [
+    //   {
+    //     phrases: ["meet up with Bean"],
+    //   },
+    // ],
   };
 
   const audio = {
@@ -39,7 +39,7 @@ export const transcribeAudio = async (content) => {
   const [response] = await client.recognize(request);
   const transcription = response.results
     .map((result) => result.alternatives[0].transcript)
-    .join("\n");
+    .filter(Boolean);
 
   return transcription;
 };
