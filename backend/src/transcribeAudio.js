@@ -9,21 +9,17 @@ export const transcribeAudio = async (content) => {
   // Creates a client
   const client = new speech.SpeechClient();
 
-  const model = "video";
-  const encoding = "MP3";
-  const sampleRateHertz = 16000;
+  const encoding = "FLAC";
+  const sampleRateHertz = 44100;
   const languageCode = "en-US";
+  const model = "default";
 
   const config = {
     encoding: encoding,
     sampleRateHertz: sampleRateHertz,
     languageCode: languageCode,
-    model: model,
-    // speechContexts: [
-    //   {
-    //     phrases: ["meet up with Bean"],
-    //   },
-    // ],
+    audioChannelCount: 2,
+    model,
   };
 
   const audio = {

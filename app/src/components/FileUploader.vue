@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import { nanoid } from "nanoid";
+
 import Transcript from "./Transcript.vue";
 
 export default {
@@ -67,7 +69,11 @@ export default {
 
       const data = await this.uploadAndTranscribeVideo(this.file);
 
-      this.transcript = this.splitByWords(data.join("\n"));
+      this.transcript = this.splitByWords(data.join("\n")).map((word) => ({
+        id: nanoid(),
+        word,
+      }));
+
       this.isLoading = false;
       this.previewUrl = this.createPreviewUrl(this.file);
     },
@@ -110,6 +116,7 @@ label {
   margin: 30px;
   width: 500px;
   align-items: center;
+
   background-color: #3c3c3c;
   background-image: linear-gradient(
       45deg,

@@ -7,7 +7,7 @@ export const transcribeRoute = async (req, res, _next) => {
   let filedata = req.file;
 
   ffmpeg(filedata.path)
-    .toFormat("mp3")
+    .toFormat("flac")
     .output(fs.createWriteStream(`/${filedata.originalname}`))
     .on("end", async () => {
       const transcript = await transcribeAudio(
