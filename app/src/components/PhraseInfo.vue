@@ -1,6 +1,11 @@
 <template>
   <h1>
-    {{ phraseInfo.text }} — {{ phraseInfo?.translation.slice(0, 3).join(", ") }}
+    {{ phraseInfo.text }}
+    {{
+      phraseInfo?.translation.length
+        ? `— ${phraseInfo?.translation.slice(0, 3).join(", ")}`
+        : ""
+    }}
   </h1>
   <div class="examples-container">
     <div
@@ -20,9 +25,6 @@ export default {
   name: "PhraseInfo",
   props: {
     phraseInfo: Object,
-  },
-  mounted() {
-    console.log(this.$props);
   },
 };
 </script>
