@@ -1,5 +1,6 @@
 import express from "express";
 import path from "path";
+import { promises as fs } from "fs";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import multer from "multer";
@@ -7,7 +8,7 @@ import multer from "multer";
 import { transcribeRoute } from "./src/callbacks/transcribe.js";
 import { getContextRoute } from "./src/callbacks/getContext.js";
 
-var app = express();
+const app = express();
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -36,4 +37,11 @@ app.get("/api/getContext", getContextRoute);
 //   res.render("error");
 // });
 
-app.listen(8000);
+app.listen(8000, async () => {
+  if (process.env.VERCEL) {
+    await fs.writeFile(
+      path.join(path.resolve(), "google-credentials.json"),
+      process.env.GOOGLE_CREDENTIALS
+    );
+  }
+});
