@@ -11,6 +11,7 @@
     "dev": "nodemon ./app.js --ignore google-credentials.json"
   },
   "dependencies": {
+    "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@google-cloud/speech": "^4.5.5",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
