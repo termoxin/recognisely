@@ -8,7 +8,7 @@ import multer from "multer";
 import { transcribeRoute } from "./src/callbacks/transcribe.js";
 import { getContextRoute } from "./src/callbacks/getContext.js";
 
-const app = express();
+const { router } = express();
 
 app.use(logger("dev"));
 app.use(express.json());
@@ -19,12 +19,12 @@ app.use(express.static(path.join(path.resolve(), "../app/dist")));
 
 const upload = multer({ dest: "cache/" });
 
-app.get("/", (_, res) =>
+router.get("/", (_, res) =>
   res.sendFile(path.join(path.resolve(), "../app/dist"))
 );
 
-app.post("/api/transcribeVideo", upload.single("filedata"), transcribeRoute);
-app.get("/api/getContext", getContextRoute);
+router.post("/api/transcribeVideo", upload.single("filedata"), transcribeRoute);
+router.get("/api/getContext", getContextRoute);
 
 // // error handler
 // app.use(function (err, req, res, next) {
@@ -45,3 +45,5 @@ app.listen(8000, async () => {
     );
   }
 });
+
+module.exports = router;

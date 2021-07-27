@@ -4,7 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "start": "nodemon ./app.js --ignore google-credentials.json"
+    "start": "node app.js",
+    "dev": "nodemon ./app.js --ignore google-credentials.json"
   },
   "dependencies": {
     "@google-cloud/speech": "^4.5.5",

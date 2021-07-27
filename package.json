@@ -1,0 +1,12 @@
+{
+  "name": "recognisely",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:termoxin/recognisely.git",
+  "author": "Rostislav Futornoy <rostislav.futornoy@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "yarn --cwd backend start",
+    "build": "yarn --cwd app build"
+  }
+}
