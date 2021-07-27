@@ -37,7 +37,7 @@ router.get("/api/getContext", getContextRoute);
 //   res.render("error");
 // });
 
-app.listen(8000, async () => {
+app.listen(process.env.PORT || 3000, async () => {
   if (process.env.VERCEL) {
     await fs.writeFile(
       path.join(path.resolve(), "google-credentials.json"),
