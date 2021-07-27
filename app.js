@@ -8,23 +8,21 @@ import multer from "multer";
 import { transcribeRoute } from "./src/callbacks/transcribe.js";
 import { getContextRoute } from "./src/callbacks/getContext.js";
 
-const { router } = express();
+const app = express();
 
 app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public")));
-app.use(express.static(path.join(path.resolve(), "../app/dist")));
+app.use(express.static(path.join(path.resolve(), "./app/dist")));
 
 const upload = multer({ dest: "cache/" });
 
-router.get("/", (_, res) =>
-  res.sendFile(path.join(path.resolve(), "../app/dist"))
-);
+app.get("/", (_, res) => res.sendFile(path.join(path.resolve(), "./app/dist")));
 
-router.post("/api/transcribeVideo", upload.single("filedata"), transcribeRoute);
-router.get("/api/getContext", getContextRoute);
+app.post("/api/transcribeVideo", upload.single("filedata"), transcribeRoute);
+app.get("/api/getContext", getContextRoute);
 
 // // error handler
 // app.use(function (err, req, res, next) {
@@ -45,5 +43,3 @@ app.listen(process.env.PORT || 3000, async () => {
     );
   }
 });
-
-module.exports = router;
