@@ -5,6 +5,9 @@
   "repository": "git@github.com:termoxin/recognisely.git",
   "author": "Rostislav Futornoy <rostislav.futornoy@gmail.com>",
   "license": "MIT",
+  "engines": {
+    "node": "16.x"
+  },
   "scripts": {
     "start": "npm run-script --prefix backend start"
   }
