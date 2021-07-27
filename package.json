@@ -6,7 +6,6 @@
   "author": "Rostislav Futornoy <rostislav.futornoy@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "npm run-script --prefix backend start",
-    "build": "npm run-script --prefix app build"
+    "start": "npm run-script --prefix backend start"
   }
 }
