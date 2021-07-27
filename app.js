@@ -4,7 +4,7 @@ import { promises as fs } from "fs";
 import cookieParser from "cookie-parser";
 import logger from "morgan";
 import multer from "multer";
-import { path } from "@ffmpeg-installer/ffmpeg";
+import { path as ffmpegPath } from "@ffmpeg-installer/ffmpeg";
 import ffmpeg from "fluent-ffmpeg";
 
 import { transcribeRoute } from "./src/callbacks/transcribe.js";
@@ -39,7 +39,7 @@ app.get("/api/getContext", getContextRoute);
 
 app.listen(process.env.PORT || 3000, async () => {
   if (process.env.HEROKU) {
-    ffmpeg.setFfmpegPath(path);
+    ffmpeg.setFfmpegPath(ffmpegPath);
 
     await fs.writeFile(
       path.join(path.resolve(), "google-credentials.json"),
