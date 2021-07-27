@@ -36,7 +36,11 @@ app.get("/api/getContext", getContextRoute);
 // });
 
 app.listen(process.env.PORT || 3000, async () => {
-  if (process.env.VERCEL) {
+  if (process.env.HEROKU) {
+    const ffmpegPath = require("@ffmpeg-installer/ffmpeg").path;
+    const ffmpeg = require("fluent-ffmpeg");
+    ffmpeg.setFfmpegPath(ffmpegPath);
+
     await fs.writeFile(
       path.join(path.resolve(), "google-credentials.json"),
       process.env.GOOGLE_CREDENTIALS
