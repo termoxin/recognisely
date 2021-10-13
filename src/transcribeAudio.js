@@ -21,6 +21,7 @@ export const transcribeAudio = async (content) => {
     audioChannelCount: 2,
     useEnhanced: true,
     model,
+    enableWordTimeOffsets: true,
   };
 
   const audio = {
@@ -38,5 +39,32 @@ export const transcribeAudio = async (content) => {
     .map((result) => result.alternatives[0].transcript)
     .filter(Boolean);
 
-  return transcription;
+  const wordsInfo = [];
+
+  response.results.forEach((result) => {
+    wordsInfo.push(
+      result.alternatives[0].words.map((wordInfo) => {
+        // NOTE: If you have a time offset exceeding 2^32 seconds, use the
+        // wordInfo.{x}Time.seconds.high to calculate seconds.
+        const startSecs =
+          `${wordInfo.startTime.seconds}` +
+          "." +
+          wordInfo.startTime.nanos / 100000000;
+        const endSecs =
+          `${wordInfo.endTime.seconds}` +
+          "." +
+          wordInfo.endTime.nanos / 100000000;
+        console.log(`Word: ${wordInfo.word}`);
+        console.log(`\t ${startSecs} secs - ${endSecs} secs`);
+
+        return {
+          startSecs: +startSecs,
+          endSecs: +endSecs,
+          word: wordInfo.word,
+        };
+      })
+    );
+  });
+
+  return wordsInfo;
 };

@@ -1,16 +1,25 @@
 <template>
   <div class="transcript-container">
-    <PhraseInfo v-bind:phraseInfo="phraseInfo" v-if="phraseInfo" />
+    <video
+      v-bind:src="previewUrl"
+      width="500"
+      controls
+      v-on:timeupdate="updateVideoPlayback($event)"
+    />
     <p class="transcript">
       <span
         v-for="word in transcript"
         v-on:click="addTranslation($event, word.id)"
-        v-bind:class="{ selected: phrase.includes(word.id) }"
+        v-bind:class="{
+          selected: phrase.includes(word.id),
+          playing: word.startSecs <= currentTime,
+        }"
         :key="word.id"
       >
         {{ word.word + " " }}
       </span>
     </p>
+    <PhraseInfo v-bind:phraseInfo="phraseInfo" v-if="phraseInfo" />
   </div>
 </template>
 
@@ -25,12 +34,15 @@ export default {
   data() {
     return {
       phraseInfo: null,
+      playingWordId: null,
       firstLanguage: "English",
       secondLanguage: "Russian",
       phrase: [],
+      currentTime: 0,
     };
   },
   props: {
+    previewUrl: String,
     transcript: Array,
   },
   methods: {
@@ -58,6 +70,9 @@ export default {
         this.phraseInfo = context;
         this.phrase = [];
       }
+    },
+    updateVideoPlayback(event) {
+      this.currentTime = event.target.currentTime;
     },
   },
 };
@@ -92,5 +107,11 @@ export default {
   font-weight: 900;
   box-shadow: 1px 1px 1px 1px lightgrey;
   color: #ff5722;
+}
+
+.playing {
+  box-shadow: 1px 1px 20px 1px #d3d3d3;
+  color: #4c4c4c;
+  background: #ffeb3b;
 }
 </style>

@@ -1,5 +1,9 @@
 <template>
-  <Transcript v-bind:transcript="transcript" v-if="transcript.length" />
+  <Transcript
+    v-bind:transcript="transcript"
+    v-if="transcript.length"
+    v-bind:previewUrl="previewUrl"
+  />
 
   <div class="fileUploader" v-else>
     <label for="upload-video">
@@ -69,9 +73,13 @@ export default {
 
       const data = await this.uploadAndTranscribeVideo(this.file);
 
-      this.transcript = this.splitByWords(data.join("\n")).map((word) => ({
+      this.transcript = this.splitByWords(
+        data[0].map((wordInfo) => wordInfo.word).join(" ")
+      ).map((word, index) => ({
         id: nanoid(),
         word,
+        startSecs: data[0][index].startSecs,
+        endSecs: data[0][index].endSecs,
       }));
 
       this.isLoading = false;

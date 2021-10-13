@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "termo-english-310215",
+  "private_key_id": "7dba7a573886dc7c951ebacfdd9882b861879659",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCS3HUK2y2VN9YH\nBDyd4SATiDHMJ0QVhCVZ2FCnJFcnK5Q2w6Dtc8T66DyR3r605x3eEQKTBvfabFsL\nOjWLJHD0csIzvHxySM1h3FuJYMHbzz9GETjKvFVAC2zTEcByJ8w1B+Ia/ffwRdcy\nM4pL1GfAedYTIdPCybHFq3UAbL2T3ZuB4GzVA/2KYSCgmqI6j2BoX2MsBuzG2dKp\nmT1Lt7YqaekMwuUye7E7gTDksMPsIEq8YW5AFEkiX+ZAsR7vjnXkN7mTlq2+Vdcy\nv5Kgb6R932N0fMWD2SmlfFbGyicZAForFOFCUovdiEx/Nmzn9AnN1bxfO4XqDs1w\napwJnFzVAgMBAAECggEALBvJjXKp3KTSA/Z6TELW0vb3WeU7Nikj3Lmy85hfErUs\nhUw5U8gPE/rXYkpfxc6acl1yg/02SOR9bcBUX4+Y21pySH6mc964zNkVpwun/eBf\nlShMAdwR0LP9weEVh1O7qfvNpaS8qG4ZhYrkUQUhCjatnL5urxTL714hPHjscXHL\nqJ8XB8CfRi3UrWNCLmj4ThVzIA1kNvV75oEXo76OT9vYREmK7hpNtjSORs1nTWX5\nndfUl4Lii13JWVK7gks6DsWme8Nvm9nqnQUkNVAhFGWmWvMrljIM/+enNssZMXNj\nA3CNdbp4o3fk1NeT6QZNKLCpJfF881Z04bi7jqz26wKBgQDGDe/qasdDz+oU9i2G\nBH1Q/dOhijeR8x+5tcgtv5enxP4OoTTUM6u2eBNHbjP8YC9btPu5tzqMGtXRknpL\nAvtdc1snrh3YFs5iSmghqZBJYGQHLwvxsyj8oWWVxw4OTrIdJyIXJsVXnns3QJde\nHohElPuozibDRKLvpPw3Ej81BwKBgQC91DLlSYnh1ZtXFWgJewuAozwmzDwXzAm1\nOVU0V8s0nxL08Zu+5O2EpqTcnWyroDAGVMhXmNkWXqDnN56cJE7WHHh8oGExEY1e\nRz3gF9gm73vbnc1KslSwvU2AFm6uDQZAaYXhTMKOQPtneIfpHuEjlf0mEpkGPVtE\nosYHzN+kQwKBgBcmEeCoUloOtyF0FKYRaERLJq0+5nfcntyp7pfKSQOG9trm5LHY\nyD0vk7FJpDHfXCmv4aw3SlSN3mf8YubZll+51/GvXDWhlMXQRJOKqh6pcYeVbCP3\n+NZuVt1GwtHRSOg3ZrimA3LWRziSCB8sGmlJsJBuaAFyyEiSVBhrvY+JAoGAUigg\nzvOA5WjZjlsJZ/EFDWuYgQIrj/ES0og5xCmrHN8sCS74RSo3Ug39lC3d9nmhz1uq\nSZ8xdWkHIosD7ngYVrqDuwx+hAogsQkMUox/VHqZlHc7fnSoCsYjYKhUxqeEaSRC\neTwLiB2/sQyNZeujbQ9hPLUX3Yd4lMAODRoyQJkCgYAG2mM6XjhRXl9KbL/9AOpd\nrIoFJfWCSbN6iAFt1AqLtbEYLom5sPpBH95HeG7SNea1ce5P3jfb3lnVcxoowRRv\n9OmikPDzihwrQV3WbHPL1odZGhV51lwFmhn6a8ezEu9Ut1uw5OmSYj1ndP4PtXWX\nhpSYJL3M1DwrTxqbZRyIcw==\n-----END PRIVATE KEY-----\n",
+  "client_email": "termo-english-speech-to-text@termo-english-310215.iam.gserviceaccount.com",
+  "client_id": "110415820511808084053",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/termo-english-speech-to-text%40termo-english-310215.iam.gserviceaccount.com"
+}
