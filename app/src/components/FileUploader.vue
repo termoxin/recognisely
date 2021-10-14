@@ -6,8 +6,10 @@
   />
 
   <div class="fileUploader" v-else>
+    <LinkInput />
+
     <label for="upload-video">
-      <p v-if="!file && !isLoading">Select file</p>
+      <p v-if="!file && !isLoading">Select a file</p>
       <div class="lds-ring" v-else>
         <div></div>
         <div></div>
@@ -21,6 +23,7 @@
       @change="uploadVideo($event)"
       accept="video/mp4"
       id="upload-video"
+      class="fileUploader__input"
     />
   </div>
 </template>
@@ -29,11 +32,13 @@
 import { nanoid } from "nanoid";
 
 import Transcript from "./Transcript.vue";
+import LinkInput from "./LinkInput.vue";
 
 export default {
   name: "FileUploader",
   components: {
     Transcript,
+    LinkInput,
   },
   data() {
     return {
@@ -95,7 +100,7 @@ h1 {
   margin: 50px;
 }
 
-input {
+.fileUploader__input {
   display: none;
 }
 
@@ -109,7 +114,7 @@ label {
   color: #fff;
   border-radius: 4px;
   user-select: none;
-  width: auto;
+  width: 100%;
   max-width: 455px;
   box-shadow: 2px 7px 10px 0 rgba(0, 0, 0, 0.1),
     2px 11px 11px 0 rgba(0, 0, 0, 0.1), 2px 6px 8px 0 rgba(0, 0, 0, 0.08),
