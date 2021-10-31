@@ -6,7 +6,7 @@
   />
 
   <div class="fileUploader" v-else>
-    <LinkInput />
+    <LinkInput :onYoutubeLinkTranscribed="onYoutubeLinkTranscribed" />
 
     <label for="upload-video">
       <p v-if="!file && !isLoading">Select a file</p>
@@ -49,6 +49,38 @@ export default {
     };
   },
   methods: {
+    onYoutubeLinkTranscribed({ transcript, remoteFileName }) {
+      let tempTranscript = [];
+
+      console.log(remoteFileName);
+
+      /**
+       * @todo: move it to a separate helper function
+       */
+      transcript.forEach((chunk) => {
+        console.log("chunk", chunk);
+
+        if (chunk.length) {
+          const splittedByWordsChunk = this.splitByWords(
+            chunk.map((wordInfo) => wordInfo.word).join(" ")
+          ).map((word, index) => ({
+            id: nanoid(),
+            word,
+            startSecs: chunk[index].startSecs,
+            endSecs: chunk[index].endSecs,
+          }));
+
+          console.log("splittedByWordsChunk", splittedByWordsChunk);
+
+          tempTranscript = [...tempTranscript, ...splittedByWordsChunk];
+        }
+      });
+
+      console.log(tempTranscript);
+
+      this.transcript = tempTranscript;
+      this.previewUrl = `${remoteFileName}`;
+    },
     createPreviewUrl(file) {
       const blob = new Blob([file], { type: "video/mp4" });
       const url = URL.createObjectURL(blob);
@@ -78,16 +110,31 @@ export default {
 
       const data = await this.uploadAndTranscribeVideo(this.file);
 
-      this.transcript = this.splitByWords(
-        data[0].map((wordInfo) => wordInfo.word).join(" ")
-      ).map((word, index) => ({
-        id: nanoid(),
-        word,
-        startSecs: data[0][index].startSecs,
-        endSecs: data[0][index].endSecs,
-      }));
+      let tempTranscript = [];
+
+      data.forEach((chunk) => {
+        console.log("chunk", chunk);
+
+        const splittedByWordsChunk = this.splitByWords(
+          chunk.map((wordInfo) => wordInfo.word).join(" ")
+        ).map((word, index) => ({
+          id: nanoid(),
+          word,
+          startSecs: chunk[index].startSecs,
+          endSecs: chunk[index].endSecs,
+        }));
+
+        console.log("splittedByWordsChunk", splittedByWordsChunk);
+
+        tempTranscript = [...tempTranscript, ...splittedByWordsChunk];
+      });
+
+      console.log(tempTranscript);
+
+      this.transcript = tempTranscript;
 
       this.isLoading = false;
+
       this.previewUrl = this.createPreviewUrl(this.file);
     },
   },

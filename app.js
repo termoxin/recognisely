@@ -17,6 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(path.resolve(), "public")));
+app.use(express.static(path.join(path.resolve(), "./cache")));
 app.use(express.static(path.join(path.resolve(), "./app/dist")));
 
 const upload = multer({ dest: "cache/" });

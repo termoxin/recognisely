@@ -1,25 +1,29 @@
 <template>
-  <div class="transcript-container">
-    <video
-      v-bind:src="previewUrl"
-      width="500"
-      controls
-      v-on:timeupdate="updateVideoPlayback($event)"
-    />
-    <p class="transcript">
-      <span
-        v-for="word in transcript"
-        v-on:click="addTranslation($event, word.id)"
-        v-bind:class="{
-          selected: phrase.includes(word.id),
-          playing: word.startSecs <= currentTime,
-        }"
-        :key="word.id"
-      >
-        {{ word.word + " " }}
-      </span>
-    </p>
-    <PhraseInfo v-bind:phraseInfo="phraseInfo" v-if="phraseInfo" />
+  <div class="container">
+    <div class="transcript-container">
+      <video
+        v-bind:src="previewUrl"
+        width="500"
+        controls
+        v-on:timeupdate="updateVideoPlayback($event)"
+      />
+      <p class="transcript">
+        <span
+          v-for="word in transcript"
+          v-on:click="addTranslation($event, word.id)"
+          v-bind:class="{
+            selected: phrase.includes(word.id),
+            playing: word.startSecs <= currentTime,
+          }"
+          :key="word.id"
+        >
+          {{ word.word + " " }}
+        </span>
+      </p>
+    </div>
+    <div class="phrase-info-container">
+      <PhraseInfo v-bind:phraseInfo="phraseInfo" v-if="phraseInfo" />
+    </div>
   </div>
 </template>
 
@@ -79,6 +83,20 @@ export default {
 </script>
 
 <style scoped>
+video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.container {
+  display: flex;
+}
+
+.phrase-info-container {
+  padding: 50px;
+}
+
 .transcript-container {
   display: flex;
   flex-direction: column;
@@ -89,6 +107,7 @@ export default {
   width: 800px;
   overflow-wrap: break-word;
   user-select: none;
+  margin-top: 20px;
 }
 
 .transcript span {

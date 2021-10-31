@@ -2,6 +2,7 @@
   <input
     type="text"
     placeholder="Enter YT link (e.g. https://youtu.be/Bufy6m_-lJY)"
+    v-model="youtubeLink"
   />
 </template>
 
@@ -9,7 +10,28 @@
 export default {
   name: "LinkInput",
   data() {
-    return {};
+    return {
+      youtubeLink: "",
+    };
+  },
+  props: {
+    onYoutubeLinkTranscribed: Function,
+  },
+  updated() {
+    this.transcribeYoutubeVideo();
+  },
+  methods: {
+    async transcribeYoutubeVideo() {
+      const response = await fetch("/api/transcribeVideo", {
+        method: "POST",
+        body: JSON.stringify({ youtubeLink: this.youtubeLink }),
+        headers: { "Content-Type": "application/json" },
+      });
+
+      const data = await response.json();
+
+      this.onYoutubeLinkTranscribed(data);
+    },
   },
 };
 </script>

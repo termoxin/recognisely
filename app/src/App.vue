@@ -33,6 +33,6 @@ export default {
   align-items: center;
   height: 100%;
   width: 100%;
-  padding: 300px;
+  padding: 30px;
 }
 </style>
