@@ -17,7 +17,7 @@ export const transcribeRoute = async (req, res, _next) => {
     const stream = fs.createWriteStream(`./cache/${fileNanoId}.mp4`);
 
     ytdl(youtubeLink, {
-      range: { start: 0, end: 3000000 },
+      range: { start: 0, end: 1500000 },
     }).pipe(stream);
 
     stream.on("finish", async () => {
